@@ -3,9 +3,11 @@ locals {
     prometheus_image_repository = var.prometheus_image_repository
     prometheus_image_tag        = var.prometheus_image_tag
 
-    grafana_image_repository = var.grafana_image_repository
-    grafana_image_tag        = var.grafana_image_tag
-    grafana_admin_password   = var.grafana_admin_password
+    grafana_image_repository   = var.grafana_image_repository
+    grafana_image_tag          = var.grafana_image_tag
+    grafana_admin_password     = var.grafana_admin_password
+    grafana_okta_client_id     = var.grafana_okta_client_id
+    grafana_okta_client_secret = var.grafana_okta_client_secret
 
     prometheus_operator_image_repository = var.prometheus_operator_image_repository
     prometheus_operator_image_tag        = var.prometheus_operator_image_tag

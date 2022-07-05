@@ -714,7 +714,7 @@ grafana:
   ingress:
     ## If true, Grafana Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     ## IngressClassName for Grafana Ingress.
     ## Should be provided if Ingress is enable.
@@ -736,7 +736,8 @@ grafana:
     ##
     # hosts:
     #   - grafana.domain.com
-    hosts: []
+    hosts:
+      - bt-dev.grafana.platform.sphdigital.com
 
     ## Path for grafana ingress
     path: /
@@ -749,11 +750,65 @@ grafana:
     #   hosts:
     #   - grafana.example.com
 
+  grafana.ini:
+    log:
+      level: debug
+    server:
+      root_url: https://bt-dev.grafana.platform.sphdigital.com
+    auth.okta:
+      name: Okta
+      icon: okta
+      enabled: true
+      allow_sign_up: true
+      client_id: ${grafana_okta_client_id}
+      client_secret: ${grafana_okta_client_secret}
+      scopes: openid profile email groups
+      auth_url: https://sphmedia.okta.com/oauth2/v1/authorize
+      token_url: https://sphmedia.okta.com/oauth2/v1/token
+      api_url: https://sphmedia.okta.com/oauth2/v1/userinfo
+      # allowed_domains:
+      # allowed_groups:
+      # role_attribute_path:
+    external_image_storage:
+      provider: s3
+    external_image_storage.s3:
+      bucket: s3-slack-grafana
+      region: ap-southeast-1
+    smtp:
+      enabled: true
+      host: "email-smtp.us-west-2.amazonaws.com:465"
+      user: "AKIAXJT7Y56UEV3IO4HS"
+      password: EMAIL_AUTH_PASSWORD
+      from_address: "noreply-grafana@sph.com.sg"
+      from_name: "Grafana"
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'cloudwatch'
+        orgId: 1
+        folder: 'cloudwatch'
+        type: file
+        disableDeletion: true
+        editable: false
+        options:
+          path: /var/lib/grafana/dashboards/cloudwatch
+      - name: 'kubernetes'
+        orgId: 1
+        folder: 'kubernetes'
+        type: file
+        disableDeletion: true
+        editable: false
+        options:
+          path: /var/lib/grafana/dashboards/kubernetes
+
   sidecar:
     dashboards:
       enabled: true
       label: grafana_dashboard
       labelValue: "1"
+      folder: /var/lib/grafana/dashboards
 
       ## Annotations for Grafana dashboard configmaps
       ##
@@ -2034,7 +2089,7 @@ prometheus:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
   ingress:
-    enabled: false
+    enabled: true
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
@@ -2048,12 +2103,13 @@ prometheus:
     ##
     # hosts:
     #   - prometheus.domain.com
-    hosts: []
+    hosts:
+      - bt-dev.prometheus.platform.sphdigital.com
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
-    paths: []
-    # - /
+    paths:
+      - /
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
     ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types

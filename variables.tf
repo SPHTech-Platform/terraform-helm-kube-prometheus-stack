@@ -74,6 +74,18 @@ variable "grafana_admin_password" {
   sensitive   = true
 }
 
+variable "grafana_okta_client_id" {
+  description = "OKTA Client ID for Grafana"
+  type        = string
+  sensitive   = true
+}
+
+variable "grafana_okta_client_secret" {
+  description = "OKTA Client Secret for Grafana"
+  type        = string
+  sensitive   = true
+}
+
 variable "prometheus_operator_image_repository" {
   description = "Prometheus Operator Image repository"
   type        = string
