@@ -16,6 +16,9 @@ locals {
     grafana_okta_token_url     = var.grafana_okta_token_url
     grafana_okta_api_url       = var.grafana_okta_api_url
 
+    grafana_s3_image_bucket        = var.grafana_s3_image_bucket
+    grafana_s3_image_bucket_region = var.grafana_s3_image_bucket_region
+
     prometheus_operator_image_repository = var.prometheus_operator_image_repository
     prometheus_operator_image_tag        = var.prometheus_operator_image_tag
 

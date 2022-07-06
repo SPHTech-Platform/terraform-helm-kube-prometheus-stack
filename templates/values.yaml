@@ -773,8 +773,8 @@ grafana:
     external_image_storage:
       provider: s3
     external_image_storage.s3:
-      bucket: s3-slack-grafana
-      region: ap-southeast-1
+      bucket: ${grafana_s3_image_bucket}
+      region: ${grafana_s3_image_bucket_region}
     smtp:
       enabled: true
       host: ${smtp_host}
