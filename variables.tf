@@ -56,6 +56,12 @@ variable "prometheus_image_tag" {
   default     = "v2.36.2"
 }
 
+variable "prometheus_host_url" {
+  description = "Prometheus Host URL"
+  type        = string
+  default     = ""
+}
+
 variable "grafana_image_repository" {
   description = "Grafana Image repository on Dockerhub"
   type        = string
@@ -150,6 +156,19 @@ variable "smtp_password" {
 
 variable "smtp_from_address" {
   description = "From Address which want to send emails"
+  type        = string
+  default     = ""
+}
+
+### S3 ###
+variable "grafana_s3_image_bucket" {
+  description = "Grafana S3 image bucket"
+  type        = string
+  default     = ""
+}
+
+variable "grafana_s3_image_bucket_region" {
+  description = "Region of the Grafana S3 image bucket"
   type        = string
   default     = ""
 }
