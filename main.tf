@@ -2,12 +2,19 @@ locals {
   values = {
     prometheus_image_repository = var.prometheus_image_repository
     prometheus_image_tag        = var.prometheus_image_tag
+    prometheus_host_url         = var.prometheus_host_url
 
-    grafana_image_repository   = var.grafana_image_repository
-    grafana_image_tag          = var.grafana_image_tag
-    grafana_admin_password     = var.grafana_admin_password
+    grafana_image_repository = var.grafana_image_repository
+    grafana_image_tag        = var.grafana_image_tag
+    grafana_admin_password   = var.grafana_admin_password
+    grafana_host_url         = var.grafana_host_url
+    grafana_server_root_url  = var.grafana_server_root_url
+
     grafana_okta_client_id     = var.grafana_okta_client_id
     grafana_okta_client_secret = var.grafana_okta_client_secret
+    grafana_okta_auth_url      = var.grafana_okta_auth_url
+    grafana_okta_token_url     = var.grafana_okta_token_url
+    grafana_okta_api_url       = var.grafana_okta_api_url
 
     prometheus_operator_image_repository = var.prometheus_operator_image_repository
     prometheus_operator_image_tag        = var.prometheus_operator_image_tag

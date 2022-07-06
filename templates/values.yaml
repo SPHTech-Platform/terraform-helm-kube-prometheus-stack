@@ -738,7 +738,7 @@ grafana:
     # hosts:
     #   - grafana.domain.com
     hosts:
-      - bt-dev.grafana.platform.sphdigital.com
+      - ${grafana_host_url}
 
     ## Path for grafana ingress
     path: /
@@ -755,7 +755,7 @@ grafana:
     log:
       level: debug
     server:
-      root_url: https://bt-dev.grafana.platform.sphdigital.com
+      root_url: ${grafana_server_root_url}
     auth.okta:
       name: Okta
       icon: okta
@@ -764,9 +764,9 @@ grafana:
       client_id: ${grafana_okta_client_id}
       client_secret: ${grafana_okta_client_secret}
       scopes: openid profile email groups
-      auth_url: https://sphmedia.okta.com/oauth2/v1/authorize
-      token_url: https://sphmedia.okta.com/oauth2/v1/token
-      api_url: https://sphmedia.okta.com/oauth2/v1/userinfo
+      auth_url: ${grafana_okta_auth_url}
+      token_url: ${grafana_okta_token_url}
+      api_url: ${grafana_okta_api_url}
       # allowed_domains:
       # allowed_groups:
       # role_attribute_path:
@@ -2106,7 +2106,7 @@ prometheus:
     # hosts:
     #   - prometheus.domain.com
     hosts:
-      - bt-dev.prometheus.platform.sphdigital.com
+      - ${prometheus_host_url}
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##

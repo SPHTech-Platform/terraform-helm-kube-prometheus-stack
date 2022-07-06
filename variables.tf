@@ -74,6 +74,19 @@ variable "grafana_admin_password" {
   sensitive   = true
 }
 
+variable "grafana_host_url" {
+  description = "Grafana Host URL"
+  type        = string
+  default     = ""
+}
+
+variable "grafana_server_root_url" {
+  description = "Grafana Server Root URL"
+  type        = string
+  default     = ""
+}
+
+### OKAT Config of Grafana ###
 variable "grafana_okta_client_id" {
   description = "OKTA Client ID for Grafana"
   type        = string
@@ -84,6 +97,24 @@ variable "grafana_okta_client_secret" {
   description = "OKTA Client Secret for Grafana"
   type        = string
   sensitive   = true
+}
+
+variable "grafana_okta_auth_url" {
+  description = "OKTA Auth URL for Grafana"
+  type        = string
+  default     = ""
+}
+
+variable "grafana_okta_token_url" {
+  description = "OKTA Token URL for Grafana"
+  type        = string
+  default     = ""
+}
+
+variable "grafana_okta_api_url" {
+  description = "OKTA API URL for Grafana"
+  type        = string
+  default     = ""
 }
 
 variable "prometheus_operator_image_repository" {
