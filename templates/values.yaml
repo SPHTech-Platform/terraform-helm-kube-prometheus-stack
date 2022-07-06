@@ -777,10 +777,10 @@ grafana:
       region: ap-southeast-1
     smtp:
       enabled: true
-      host: "email-smtp.us-west-2.amazonaws.com:465"
-      user: "AKIAXJT7Y56UEV3IO4HS"
-      password: EMAIL_AUTH_PASSWORD
-      from_address: "noreply-grafana@sph.com.sg"
+      host: ${smtp_host}
+      user: ${smtp_user}
+      password: ${smtp_password}
+      from_address: ${smtp_from_address}
       from_name: "Grafana"
 
   dashboardProviders:

@@ -97,3 +97,28 @@ variable "prometheus_operator_image_tag" {
   type        = string
   default     = "v0.57.0"
 }
+
+### SMTP ####
+variable "smtp_host" {
+  description = "SMTP Server Host Address"
+  type        = string
+  default     = ""
+}
+
+variable "smtp_user" {
+  description = "SMTP User"
+  type        = string
+  sensitive   = true
+}
+
+variable "smtp_password" {
+  description = "SMTP Password"
+  type        = string
+  sensitive   = true
+}
+
+variable "smtp_from_address" {
+  description = "From Address which want to send emails"
+  type        = string
+  default     = ""
+}

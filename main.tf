@@ -11,6 +11,11 @@ locals {
 
     prometheus_operator_image_repository = var.prometheus_operator_image_repository
     prometheus_operator_image_tag        = var.prometheus_operator_image_tag
+
+    smtp_host         = var.smtp_host
+    smtp_user         = var.smtp_user
+    smtp_password     = var.smtp_password
+    smtp_from_address = var.smtp_from_address
   }
 }
 
