@@ -11,11 +11,6 @@ locals {
 
     prometheus_operator_image_repository = var.prometheus_operator_image_repository
     prometheus_operator_image_tag        = var.prometheus_operator_image_tag
-
-    resources_driver    = jsonencode(var.resources_driver)
-    resources_registrar = jsonencode(var.resources_registrar)
-    resources_liveness  = jsonencode(var.resources_liveness)
-
   }
 }
 
