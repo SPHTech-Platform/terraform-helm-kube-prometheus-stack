@@ -1252,7 +1252,7 @@ grafana:
       searchNamespace: null
       # search in configmap, secret or both
       resource: both
-  
+
   ## Override the deployment namespace
   ##
   namespaceOverride: ""
