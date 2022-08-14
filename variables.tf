@@ -380,6 +380,7 @@ variable "grafana_command" {
 
 variable "grafana_plugins" {
   description = "List of plugins to install"
+  type        = list(any)
   default     = []
 }
 

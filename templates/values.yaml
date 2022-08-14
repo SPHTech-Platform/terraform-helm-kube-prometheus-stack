@@ -1319,84 +1319,84 @@ grafana:
   #     cpu: 50m
   #     memory: 50Mi
 
-  ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
-  ##
-  forceDeployDatasources: false
+  # ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
+  # ##
+  # forceDeployDatasources: false
 
-  ## ForceDeployDashboard Create dashboard configmap even if grafana deployment has been disabled
-  ##
-  forceDeployDashboards: false
+  # ## ForceDeployDashboard Create dashboard configmap even if grafana deployment has been disabled
+  # ##
+  # forceDeployDashboards: false
 
-  ## Deploy default dashboards
-  ##
-  defaultDashboardsEnabled: true
+  # ## Deploy default dashboards
+  # ##
+  # defaultDashboardsEnabled: true
 
-  ## Timezone for the default dashboards
-  ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
-  ##
-  defaultDashboardsTimezone: utc
+  # ## Timezone for the default dashboards
+  # ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
+  # ##
+  # defaultDashboardsTimezone: utc
 
-  sidecar:
-    dashboards:
-      enabled: true
-      label: grafana_dashboard
-      labelValue: "1"
-      folder: /var/lib/grafana/dashboards
+  # sidecar:
+  #   dashboards:
+  #     enabled: true
+  #     label: grafana_dashboard
+  #     labelValue: "1"
+  #     folder: /var/lib/grafana/dashboards
 
-      ## Annotations for Grafana dashboard configmaps
-      ##
-      annotations: {}
-      multicluster:
-        global:
-          enabled: false
-        etcd:
-          enabled: false
-      provider:
-        allowUiUpdates: false
-    datasources:
-      enabled: true
-      defaultDatasourceEnabled: true
+  #     ## Annotations for Grafana dashboard configmaps
+  #     ##
+  #     annotations: {}
+  #     multicluster:
+  #       global:
+  #         enabled: false
+  #       etcd:
+  #         enabled: false
+  #     provider:
+  #       allowUiUpdates: false
+  #   datasources:
+  #     enabled: true
+  #     defaultDatasourceEnabled: true
 
-      uid: prometheus
+  #     uid: prometheus
 
-      ## URL of prometheus datasource
-      ##
-      # url: http://prometheus-stack-prometheus:9090/
+  #     ## URL of prometheus datasource
+  #     ##
+  #     # url: http://prometheus-stack-prometheus:9090/
 
-      # If not defined, will use prometheus.prometheusSpec.scrapeInterval or its default
-      # defaultDatasourceScrapeInterval: 15s
+  #     # If not defined, will use prometheus.prometheusSpec.scrapeInterval or its default
+  #     # defaultDatasourceScrapeInterval: 15s
 
-      ## Annotations for Grafana datasource configmaps
-      ##
-      annotations: {}
+  #     ## Annotations for Grafana datasource configmaps
+  #     ##
+  #     annotations: {}
 
-      ## Create datasource for each Pod of Prometheus StatefulSet;
-      ## this uses headless service `prometheus-operated` which is
-      ## created by Prometheus Operator
-      ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/0fee93e12dc7c2ea1218f19ae25ec6b893460590/pkg/prometheus/statefulset.go#L255-L286
-      createPrometheusReplicasDatasources: false
-      label: grafana_datasource
-      labelValue: "1"
+  #     ## Create datasource for each Pod of Prometheus StatefulSet;
+  #     ## this uses headless service `prometheus-operated` which is
+  #     ## created by Prometheus Operator
+  #     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/0fee93e12dc7c2ea1218f19ae25ec6b893460590/pkg/prometheus/statefulset.go#L255-L286
+  #     createPrometheusReplicasDatasources: false
+  #     label: grafana_datasource
+  #     labelValue: "1"
 
-  deleteDatasources: []
-  # - name: example-datasource
-  #   orgId: 1
+  # deleteDatasources: []
+  # # - name: example-datasource
+  # #   orgId: 1
 
-  ## Configure additional grafana datasources (passed through tpl)
-  ## ref: http://docs.grafana.org/administration/provisioning/#datasources
-  additionalDataSources: []
-  # - name: prometheus-sample
-  #   access: proxy
-  #   basicAuth: true
-  #   basicAuthPassword: pass
-  #   basicAuthUser: daco
-  #   editable: false
-  #   jsonData:
-  #       tlsSkipVerify: true
-  #   orgId: 1
-  #   type: prometheus
-  #   url: https://{{ printf "%s-prometheus.svc" .Release.Name }}:9090
-  #   version: 1
+  # ## Configure additional grafana datasources (passed through tpl)
+  # ## ref: http://docs.grafana.org/administration/provisioning/#datasources
+  # additionalDataSources: []
+  # # - name: prometheus-sample
+  # #   access: proxy
+  # #   basicAuth: true
+  # #   basicAuthPassword: pass
+  # #   basicAuthUser: daco
+  # #   editable: false
+  # #   jsonData:
+  # #       tlsSkipVerify: true
+  # #   orgId: 1
+  # #   type: prometheus
+  # #   url: https://{{ printf "%s-prometheus.svc" .Release.Name }}:9090
+  # #   version: 1
 
 ##############################################
 ############# GRAFANA CONFIG #################

@@ -80,7 +80,7 @@ No modules.
 | <a name="input_grafana_persistence_existing_claim"></a> [grafana\_persistence\_existing\_claim](#input\_grafana\_persistence\_existing\_claim) | Use an existing PVC | `string` | `""` | no |
 | <a name="input_grafana_persistence_size"></a> [grafana\_persistence\_size](#input\_grafana\_persistence\_size) | Size of the PV | `string` | `"10Gi"` | no |
 | <a name="input_grafana_persistence_storage_class_name"></a> [grafana\_persistence\_storage\_class\_name](#input\_grafana\_persistence\_storage\_class\_name) | Storage Class name for the PV | `string` | `"default"` | no |
-| <a name="input_grafana_plugins"></a> [grafana\_plugins](#input\_grafana\_plugins) | List of plugins to install | `list` | `[]` | no |
+| <a name="input_grafana_plugins"></a> [grafana\_plugins](#input\_grafana\_plugins) | List of plugins to install | `list(any)` | `[]` | no |
 | <a name="input_grafana_pod_annotations"></a> [grafana\_pod\_annotations](#input\_grafana\_pod\_annotations) | Pod annotations | `map(any)` | `{}` | no |
 | <a name="input_grafana_priority_class_name"></a> [grafana\_priority\_class\_name](#input\_grafana\_priority\_class\_name) | Priority Class name for Grafana | `string` | `""` | no |
 | <a name="input_grafana_psp_enable"></a> [grafana\_psp\_enable](#input\_grafana\_psp\_enable) | Enable PSP | `bool` | `true` | no |
