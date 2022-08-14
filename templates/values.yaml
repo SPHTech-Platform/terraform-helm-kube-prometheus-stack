@@ -702,10 +702,10 @@ grafana:
       verbs: ["get", "watch", "list"]
 
   serviceAccount:
-  create: true
-  name: ${grafana_service_account}
-  annotations: ${grafana_service_account_annotations}
-  autoMount: true
+    create: true
+    name: ${grafana_service_account}
+    annotations: ${grafana_service_account_annotations}
+    autoMount: true
 
   replicas: ${replicas}
 
