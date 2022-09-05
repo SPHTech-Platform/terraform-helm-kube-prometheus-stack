@@ -123,9 +123,8 @@ variable "grafana_s3_image_bucket_region" {
 variable "recreate_pods" {
   description = "Recreate the pods with every helm update"
   type        = bool
-  default     = "false"
+  default     = false
 }
-
 
 variable "grafana_service_account" {
   description = "Name of the Service Account for Grafana"
@@ -201,14 +200,14 @@ variable "grafana_service_type" {
 
 variable "grafana_service_port" {
   description = "Port of the service"
-  type        = string
-  default     = "80"
+  type        = number
+  default     = 80
 }
 
 variable "grafana_service_target_port" {
   description = "Port in container to expose service"
-  type        = string
-  default     = "3000"
+  type        = number
+  default     = 3000
 }
 
 variable "grafana_service_annotations" {
@@ -454,14 +453,14 @@ variable "grafana_okta_enabled" {
   default     = false
 }
 
-variable "GRAFANA_OAUTH_CLIENT_ID" {
-  description = "GRAFANA_OAUTH_CLIENT_ID"
+variable "grafana_oauth_client_id" {
+  description = "client_id of the App"
   type        = string
   default     = ""
 }
 
-variable "GRAFANA_OAUTH_CLIENT_SECRET" {
-  description = "GRAFANA_OAUTH_CLIENT_SECRET"
+variable "grafana_oauth_client_secret" {
+  description = "client_secret between app and authorisation server"
   type        = string
   default     = ""
 }
@@ -591,14 +590,14 @@ variable "image_renderer_security_context" {
 
 variable "image_renderer_port" {
   description = "image-renderer service port used by both service and deployment"
-  type        = string
-  default     = "8081"
+  type        = number
+  default     = 8081
 }
 
 variable "image_renderer_target_port" {
   description = "image-renderer service targetPort used by both service and deployment"
-  type        = string
-  default     = "8081"
+  type        = number
+  default     = 8081
 }
 
 variable "image_renderer_resources" {
