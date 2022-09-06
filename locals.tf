@@ -4,6 +4,9 @@ locals {
     prometheus_image_tag        = var.prometheus_image_tag
     prometheus_host_url         = var.prometheus_host_url
 
+    prometheus_service_account             = var.prometheus_service_account
+    prometheus_service_account_annotations = jsonencode(var.prometheus_service_account_annotations)
+
     prometheus_ingress_enabled     = var.prometheus_ingress_enabled
     prometheus_ingress_annotations = jsonencode(var.prometheus_ingress_annotations)
     prometheus_ingress_labels      = jsonencode(var.prometheus_ingress_labels)

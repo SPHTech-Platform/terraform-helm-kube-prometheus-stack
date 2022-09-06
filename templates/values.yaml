@@ -2350,8 +2350,9 @@ prometheus:
   ##
   serviceAccount:
     create: true
-    name: ""
-    annotations: {}
+    name: ${prometheus_service_account}
+    annotations: ${prometheus_service_account_annotations}
+    autoMount: true
 
   # Service for thanos service discovery on sidecar
   # Enable this can make Thanos Query can use

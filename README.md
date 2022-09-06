@@ -124,6 +124,8 @@ No modules.
 | <a name="input_prometheus_ingress_tls"></a> [prometheus\_ingress\_tls](#input\_prometheus\_ingress\_tls) | TLS configuration for ingress | `list(any)` | `[]` | no |
 | <a name="input_prometheus_operator_image_repository"></a> [prometheus\_operator\_image\_repository](#input\_prometheus\_operator\_image\_repository) | Prometheus Operator Image repository | `string` | `"quay.io/prometheus-operator/prometheus-operator"` | no |
 | <a name="input_prometheus_operator_image_tag"></a> [prometheus\_operator\_image\_tag](#input\_prometheus\_operator\_image\_tag) | Prometheus Operator Image Tag | `string` | `"v0.57.0"` | no |
+| <a name="input_prometheus_service_account"></a> [prometheus\_service\_account](#input\_prometheus\_service\_account) | Name of the Service Account for Grafana | `string` | `""` | no |
+| <a name="input_prometheus_service_account_annotations"></a> [prometheus\_service\_account\_annotations](#input\_prometheus\_service\_account\_annotations) | Annotations for service account | `map(any)` | `{}` | no |
 | <a name="input_promethues_operator_nodeSelector"></a> [promethues\_operator\_nodeSelector](#input\_promethues\_operator\_nodeSelector) | Promethues Operator node selector | `any` | `""` | no |
 | <a name="input_recreate_pods"></a> [recreate\_pods](#input\_recreate\_pods) | Recreate the pods with every helm update | `bool` | `false` | no |
 | <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Helm release name | `string` | `"kube-prometheus-stack"` | no |

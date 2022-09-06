@@ -56,9 +56,9 @@ variable "recreate_pods" {
   default     = false
 }
 
-########################
-# Chart Values
-########################
+###############################
+### Prometheus Chart Values ###
+###############################
 
 variable "prometheus_image_repository" {
   description = "Prometheus Image repository"
@@ -76,6 +76,18 @@ variable "prometheus_host_url" {
   description = "Prometheus Host URL"
   type        = string
   default     = ""
+}
+
+variable "prometheus_service_account" {
+  description = "Name of the Service Account for Grafana"
+  type        = string
+  default     = ""
+}
+
+variable "prometheus_service_account_annotations" {
+  description = "Annotations for service account"
+  type        = map(any)
+  default     = {}
 }
 
 ### prometheus Ingress ###
