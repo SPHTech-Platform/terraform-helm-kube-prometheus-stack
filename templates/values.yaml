@@ -559,8 +559,7 @@ alertmanager:
     ## Define which Nodes the Pods are scheduled on.
     ## ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector:
-      "dedicated": "monitoring"
+    nodeSelector: ${prometheus_alertmanagerSpec_nodeSelector}
 
     ## Define resources requests and limits for single Pods.
     ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
@@ -2124,7 +2123,7 @@ prometheusOperator:
   ##
   # clusterDomain: "cluster.local"
 
-  ## Service account for Alertmanager to use.
+  ## Service account for Prometheus Operator to use.
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   ##
   serviceAccount:
@@ -2242,8 +2241,7 @@ prometheusOperator:
   ## Define which Nodes the Pods are scheduled on.
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-      "dedicated": "monitoring"
+  nodeSelector: ${promethues_operator_nodeSelector}
 
   ## Tolerations for use with node taints
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -2583,14 +2581,14 @@ prometheus:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
   ingress:
-    enabled: true
+    enabled: ${prometheus_ingress_enabled}
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     # ingressClassName: nginx
 
-    annotations: {}
-    labels: {}
+    annotations: ${prometheus_ingress_annotations}
+    labels: ${prometheus_ingress_labels}
 
     ## Hostnames.
     ## Must be provided if Ingress is enabled.
@@ -2612,7 +2610,7 @@ prometheus:
     ## TLS configuration for Prometheus Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: []
+    tls: ${prometheus_ingress_tls}
       # - secretName: prometheus-general-tls
       #   hosts:
       #     - prometheus.example.com
@@ -2819,8 +2817,7 @@ prometheus:
     ## Define which Nodes the Pods are scheduled on.
     ## ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector:
-      "dedicated": "monitoring"
+    nodeSelector: ${prometheusSpec_nodeSelector}
 
     ## Secrets is a list of Secrets in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods.
     ## The Secrets are mounted into /etc/prometheus/secrets/. Secrets changes after initial creation of a Prometheus object are not
@@ -3651,8 +3648,7 @@ thanosRuler:
     ## Define which Nodes the Pods are scheduled on.
     ## ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector:
-      "dedicated": "monitoring"
+    nodeSelector: {}
 
     ## Define resources requests and limits for single Pods.
     ## ref: https://kubernetes.io/docs/user-guide/compute-resources/

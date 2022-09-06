@@ -1,3 +1,7 @@
+###############################
+######### Helm Release ########
+###############################
+
 variable "release_name" {
   description = "Helm release name"
   type        = string
@@ -19,13 +23,19 @@ variable "chart_repository" {
 variable "chart_version" {
   description = "Version of Chart to install. Set to empty to install the latest version"
   type        = string
-  default     = "36.2.1"
+  default     = "39.11.0"
 }
 
 variable "chart_namespace" {
   description = "Namespace to install the chart into"
   type        = string
   default     = "monitoring"
+}
+
+variable "create_namespace" {
+  description = "Namespace to install the chart into"
+  type        = bool
+  default     = false
 }
 
 variable "chart_timeout" {
@@ -38,6 +48,12 @@ variable "max_history" {
   description = "Max History for Helm"
   type        = number
   default     = 20
+}
+
+variable "recreate_pods" {
+  description = "Recreate the pods with every helm update"
+  type        = bool
+  default     = false
 }
 
 ########################
@@ -62,34 +78,35 @@ variable "prometheus_host_url" {
   default     = ""
 }
 
-variable "grafana_image_repository" {
-  description = "Grafana Image repository on Dockerhub"
-  type        = string
-  default     = "grafana/grafana"
+### prometheus Ingress ###
+variable "prometheus_ingress_enabled" {
+  description = "Enable Ingress"
+  type        = bool
+  default     = false
 }
 
-variable "grafana_image_tag" {
-  description = "Grafana Image tag"
-  type        = string
-  default     = "9.0.2"
+variable "prometheus_ingress_annotations" {
+  description = "Annotations for ingress"
+  type        = map(any)
+  default     = {}
 }
 
-variable "grafana_admin_password_key" {
-  description = "Key in the secret containing the admin password"
-  type        = string
-  default     = "admin-password"
+variable "prometheus_ingress_labels" {
+  description = "Labels for ingress"
+  type        = map(any)
+  default     = {}
 }
 
-variable "grafana_host_url" {
-  description = "Grafana Host URL"
-  type        = string
-  default     = ""
+variable "prometheus_ingress_hosts" {
+  description = "Hosts for ingress"
+  type        = list(any)
+  default     = []
 }
 
-variable "grafana_server_root_url" {
-  description = "Grafana Server Root URL"
-  type        = string
-  default     = ""
+variable "prometheus_ingress_tls" {
+  description = "TLS configuration for ingress"
+  type        = list(any)
+  default     = []
 }
 
 variable "prometheus_operator_image_repository" {
@@ -104,26 +121,49 @@ variable "prometheus_operator_image_tag" {
   default     = "v0.57.0"
 }
 
-### S3 ###
-variable "grafana_s3_image_bucket" {
-  description = "Grafana S3 image bucket"
-  type        = string
+variable "promethues_operator_nodeSelector" {
+  description = "Promethues Operator node selector"
+  type        = any
   default     = ""
 }
 
-variable "grafana_s3_image_bucket_region" {
-  description = "Region of the Grafana S3 image bucket"
-  type        = string
+variable "prometheus_alertmanagerSpec_nodeSelector" {
+  description = "Alertmanager Spec node selector"
+  type        = any
+  default     = ""
+}
+
+variable "prometheusSpec_nodeSelector" {
+  description = "prometheus Spec node selector"
+  type        = any
   default     = ""
 }
 
 ###########################################
 ######## GRAFANA LOCALS & VARIABLE ########
 ###########################################
-variable "recreate_pods" {
-  description = "Recreate the pods with every helm update"
-  type        = bool
-  default     = false
+variable "replicas" {
+  description = "Number of replicas of Grafana to run"
+  type        = number
+  default     = 1
+}
+
+variable "grafana_image_repository" {
+  description = "Grafana Image repository on Dockerhub"
+  type        = string
+  default     = "grafana/grafana"
+}
+
+variable "grafana_image_tag" {
+  description = "Grafana Image tag"
+  type        = string
+  default     = "9.0.3"
+}
+
+variable "grafana_image_pull_policy" {
+  description = "Image Pull Policy for Grafana"
+  type        = string
+  default     = "IfNotPresent"
 }
 
 variable "grafana_service_account" {
@@ -138,28 +178,31 @@ variable "grafana_service_account_annotations" {
   default     = {}
 }
 
-variable "replicas" {
-  description = "Number of replicas of Grafana to run"
-  type        = number
-  default     = 1
+### Grafana RBAC ###
+variable "grafana_psp_enable" {
+  description = "Enable PSP"
+  type        = bool
+  default     = true
 }
 
-variable "image" {
-  description = "Docker Image for Grafana"
-  type        = string
-  default     = "grafana/grafana"
+variable "grafana_psp_use_app_armor" {
+  description = "Use AppAmor in the PSP"
+  type        = bool
+  default     = true
 }
 
-variable "tag" {
-  description = "Docker Image tag for Grafana"
-  type        = string
-  default     = "9.0.3"
+variable "grafana_pdb" {
+  description = "PodDisruptionBudget for Grafana"
+  type        = map(any)
+  default = {
+    minAvailable = 1
+  }
 }
 
-variable "grafana_image_pull_policy" {
-  description = "Image Pull Policy for Grafana"
-  type        = string
-  default     = "IfNotPresent"
+variable "grafana_command" {
+  description = "Define command to be executed at startup by grafana container"
+  type        = list(any)
+  default     = []
 }
 
 variable "grafana_extra_configmap_mounts" {
@@ -190,6 +233,70 @@ variable "grafana_annotations" {
   description = "Deployment annotations"
   type        = map(any)
   default     = {}
+}
+
+variable "grafana_resources" {
+  description = "Resources for Grafana container"
+  type        = map(any)
+  default     = {}
+}
+
+variable "grafana_node_selector" {
+  description = "Node selector for Pods"
+  type        = map(any)
+  default     = {}
+}
+
+variable "grafana_tolerations" {
+  description = "Tolerations for pods"
+  type        = list(any)
+  default     = []
+}
+
+variable "grafana_affinity" {
+  description = "Pod affinity"
+  type        = map(any)
+  default     = {}
+}
+
+variable "grafana_security_context" {
+  description = "Security context for pods defined as a map which will be serialized to JSON."
+  type        = any
+  default = {
+    runAsGroup = 472
+    runAsUser  = 472
+    fsGroup    = 472
+  }
+}
+
+variable "grafana_env" {
+  description = "Extra environment variables that will be pass onto deployment pods"
+  type        = map(any)
+  default     = {}
+}
+
+variable "grafana_env_from_secret" {
+  description = "The name of a secret in the same kubernetes namespace which contain values to be added to the environment"
+  type        = string
+  default     = ""
+}
+
+variable "grafana_extra_secret_mounts" {
+  description = "Additional grafana server secret mounts"
+  type        = list(any)
+  default     = []
+}
+
+variable "grafana_extra_volume_mounts" {
+  description = "Additional grafana server volume mounts"
+  type        = list(any)
+  default     = []
+}
+
+variable "grafana_enable_service_links" {
+  description = "Inject Kubernetes services as environment variables."
+  type        = bool
+  default     = true
 }
 
 variable "grafana_service_type" {
@@ -253,40 +360,6 @@ variable "grafana_ingress_tls" {
   default     = []
 }
 
-variable "grafana_resources" {
-  description = "Resources for Grafana container"
-  type        = map(any)
-  default     = {}
-}
-
-variable "grafana_node_selector" {
-  description = "Node selector for Pods"
-  type        = map(any)
-  default     = {}
-}
-
-variable "grafana_tolerations" {
-  description = "Tolerations for pods"
-  type        = list(any)
-  default     = []
-}
-
-variable "grafana_affinity" {
-  description = "Pod affinity"
-  type        = map(any)
-  default     = {}
-}
-
-variable "grafana_security_context" {
-  description = "Security context for pods defined as a map which will be serialized to JSON."
-  type        = any
-  default = {
-    runAsGroup = 472
-    runAsUser  = 472
-    fsGroup    = 472
-  }
-}
-
 variable "grafana_extra_init_containers" {
   description = "Extra init containers"
   type        = list(any)
@@ -305,6 +378,12 @@ variable "grafana_persistence_enabled" {
   default     = false
 }
 
+variable "grafana_persistence_size" {
+  description = "Size of the PV"
+  type        = string
+  default     = "10Gi"
+}
+
 variable "grafana_persistence_storage_class_name" {
   description = "Storage Class name for the PV"
   type        = string
@@ -315,12 +394,6 @@ variable "grafana_persistence_annotations" {
   description = "Annotations for the PV"
   type        = map(any)
   default     = {}
-}
-
-variable "grafana_persistence_size" {
-  description = "Size of the PV"
-  type        = string
-  default     = "10Gi"
 }
 
 variable "grafana_persistence_existing_claim" {
@@ -339,42 +412,6 @@ variable "grafana_init_chown_data_resources" {
   description = "Resources for the Chown init container"
   type        = map(any)
   default     = {}
-}
-
-variable "grafana_env" {
-  description = "Extra environment variables that will be pass onto deployment pods"
-  type        = map(any)
-  default     = {}
-}
-
-variable "grafana_env_from_secret" {
-  description = "The name of a secret in the same kubernetes namespace which contain values to be added to the environment"
-  type        = string
-  default     = ""
-}
-
-variable "grafana_enable_service_links" {
-  description = "Inject Kubernetes services as environment variables."
-  type        = bool
-  default     = true
-}
-
-variable "grafana_extra_secret_mounts" {
-  description = "Additional grafana server secret mounts"
-  type        = list(any)
-  default     = []
-}
-
-variable "grafana_extra_volume_mounts" {
-  description = "Additional grafana server volume mounts"
-  type        = list(any)
-  default     = []
-}
-
-variable "grafana_command" {
-  description = "Define command to be executed at startup by grafana container"
-  type        = list(any)
-  default     = []
 }
 
 variable "grafana_plugins" {
@@ -516,25 +553,10 @@ variable "grafana_smtp_password_key" {
   default     = "password"
 }
 
-### Grafana RBAC ###
-variable "grafana_psp_enable" {
-  description = "Enable PSP"
-  type        = bool
-  default     = true
-}
-
-variable "grafana_psp_use_app_armor" {
-  description = "Use AppAmor in the PSP"
-  type        = bool
-  default     = true
-}
-
-variable "grafana_pdb" {
-  description = "PodDisruptionBudget for Grafana"
-  type        = map(any)
-  default = {
-    minAvailable = 1
-  }
+variable "grafana_admin_password_key" {
+  description = "Key in the secret containing the admin password"
+  type        = string
+  default     = "admin-password"
 }
 
 ### Grafana Image Rendered ###

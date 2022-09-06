@@ -4,15 +4,24 @@ locals {
     prometheus_image_tag        = var.prometheus_image_tag
     prometheus_host_url         = var.prometheus_host_url
 
-    prometheus_operator_image_repository = var.prometheus_operator_image_repository
-    prometheus_operator_image_tag        = var.prometheus_operator_image_tag
+    prometheus_ingress_enabled     = var.prometheus_ingress_enabled
+    prometheus_ingress_annotations = jsonencode(var.prometheus_ingress_annotations)
+    prometheus_ingress_labels      = jsonencode(var.prometheus_ingress_labels)
+    prometheus_ingress_hosts       = jsonencode(var.prometheus_ingress_hosts)
+    prometheus_ingress_tls         = jsonencode(var.prometheus_ingress_tls)
+
+    prometheus_operator_image_repository     = var.prometheus_operator_image_repository
+    prometheus_operator_image_tag            = var.prometheus_operator_image_tag
+    promethues_operator_nodeSelector         = var.promethues_operator_nodeSelector
+    prometheus_alertmanagerSpec_nodeSelector = var.prometheus_alertmanagerSpec_nodeSelector
+    prometheusSpec_nodeSelector              = var.prometheusSpec_nodeSelector
 
     ################################
     ######## GRAFANA LOCALS ########
     ################################
     replicas                  = var.replicas
-    image                     = var.image
-    tag                       = var.tag
+    grafana_image_repository  = var.grafana_image_repository
+    grafana_image_tag         = var.grafana_image_tag
     grafana_image_pull_policy = var.grafana_image_pull_policy
 
     grafana_service_account             = var.grafana_service_account
@@ -76,11 +85,11 @@ locals {
     grafana_dashboards_config_maps = indent(2, var.grafana_dashboards_config_maps)
 
     grafana_main_config         = indent(2, var.grafana_main_config)
-    grafana_okta_config         = indent(2, var.grafana_okta_config)
     grafana_db_config           = indent(2, var.grafana_db_config)
+    grafana_okta_config         = indent(2, var.grafana_okta_config)
     grafana_okta_enabled        = var.grafana_okta_enabled
-    GRAFANA_OAUTH_CLIENT_ID     = var.GRAFANA_OAUTH_CLIENT_ID
-    GRAFANA_OAUTH_CLIENT_SECRET = var.GRAFANA_OAUTH_CLIENT_SECRET
+    grafana_oauth_client_id     = var.grafana_oauth_client_id
+    grafana_oauth_client_secret = var.grafana_oauth_client_secret
 
     grafana_image_repository = var.grafana_image_repository
     grafana_image_tag        = var.grafana_image_tag
@@ -115,17 +124,17 @@ locals {
 }
 
 resource "helm_release" "kube_prometheus_stack" {
-  name       = var.release_name
-  chart      = var.chart_name
-  repository = var.chart_repository
-  version    = var.chart_version
-  namespace  = var.chart_namespace
+  name             = var.release_name
+  chart            = var.chart_name
+  repository       = var.chart_repository
+  version          = var.chart_version
+  namespace        = var.chart_namespace
+  create_namespace = var.create_namespace
 
   max_history = var.max_history
   timeout     = var.chart_timeout
 
   values = [
     templatefile("${path.module}/templates/values.yaml", local.values),
-    #    templatefile("${path.module}/templates/okta_config.yaml", local.values)
   ]
 }
