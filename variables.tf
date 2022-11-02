@@ -169,7 +169,7 @@ variable "grafana_image_repository" {
 variable "grafana_image_tag" {
   description = "Grafana Image tag"
   type        = string
-  default     = "9.0.3"
+  default     = "9.2.3"
 }
 
 variable "grafana_image_pull_policy" {
@@ -480,20 +480,6 @@ log:
 grafana_net:
   url: https://grafana.net
 EOF
-}
-
-### Grafana DB Config ###
-variable "grafana_db_config" {
-  description = "database config for grafana"
-  type        = string
-  default     = ""
-}
-
-### Grafana Okta Config ###
-variable "grafana_okta_config" {
-  description = "okta config for grafana"
-  type        = string
-  default     = ""
 }
 
 variable "grafana_okta_enabled" {

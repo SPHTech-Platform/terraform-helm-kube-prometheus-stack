@@ -89,9 +89,8 @@ locals {
     grafana_dashboards             = indent(2, var.grafana_dashboards)
     grafana_dashboards_config_maps = indent(2, var.grafana_dashboards_config_maps)
 
-    grafana_main_config         = indent(2, var.grafana_main_config)
-    grafana_db_config           = indent(2, var.grafana_db_config)
-    grafana_okta_config         = indent(2, var.grafana_okta_config)
+    grafana_main_config = indent(2, var.grafana_main_config)
+
     grafana_okta_enabled        = var.grafana_okta_enabled
     grafana_oauth_client_id     = var.grafana_oauth_client_id
     grafana_oauth_client_secret = var.grafana_oauth_client_secret
