@@ -23,7 +23,7 @@ variable "chart_repository" {
 variable "chart_version" {
   description = "Version of Chart to install. Set to empty to install the latest version"
   type        = string
-  default     = "39.11.0"
+  default     = "41.7.1"
 }
 
 variable "chart_namespace" {
@@ -69,7 +69,7 @@ variable "prometheus_image_repository" {
 variable "prometheus_image_tag" {
   description = "Prometheus Image tag"
   type        = string
-  default     = "v2.36.2"
+  default     = "v2.39.1"
 }
 
 variable "prometheus_host_url" {
@@ -130,7 +130,7 @@ variable "prometheus_operator_image_repository" {
 variable "prometheus_operator_image_tag" {
   description = "Prometheus Operator Image Tag"
   type        = string
-  default     = "v0.57.0"
+  default     = "v0.60.1"
 }
 
 variable "promethues_operator_nodeSelector" {

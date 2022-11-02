@@ -18,7 +18,9 @@ locals {
     promethues_operator_nodeSelector         = var.promethues_operator_nodeSelector
     prometheus_alertmanagerSpec_nodeSelector = var.prometheus_alertmanagerSpec_nodeSelector
     prometheusSpec_nodeSelector              = var.prometheusSpec_nodeSelector
+  }
 
+  grafana_values = {
     ################################
     ######## GRAFANA LOCALS ########
     ################################

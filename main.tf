@@ -9,7 +9,8 @@ resource "helm_release" "kube_prometheus_stack" {
   max_history = var.max_history
   timeout     = var.chart_timeout
 
-  values = [
+  values = compact(distinct(concat([
     templatefile("${path.module}/templates/values.yaml", local.values),
-  ]
+    templatefile("${path.module}/templates/grafana_values.yaml", local.grafana_values),
+  ])))
 }
