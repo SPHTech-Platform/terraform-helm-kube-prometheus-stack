@@ -133,19 +133,19 @@ variable "prometheus_operator_image_tag" {
   default     = "v0.60.1"
 }
 
-variable "promethues_operator_nodeSelector" {
+variable "promethues_operator_nodeselector" {
   description = "Promethues Operator node selector"
   type        = any
   default     = ""
 }
 
-variable "prometheus_alertmanagerSpec_nodeSelector" {
+variable "prometheus_alertmanager_nodeselector" {
   description = "Alertmanager Spec node selector"
   type        = any
   default     = ""
 }
 
-variable "prometheusSpec_nodeSelector" {
+variable "prometheus_nodeselector" {
   description = "prometheus Spec node selector"
   type        = any
   default     = ""
@@ -480,24 +480,6 @@ log:
 grafana_net:
   url: https://grafana.net
 EOF
-}
-
-variable "grafana_okta_enabled" {
-  description = "okta config to enable"
-  type        = bool
-  default     = false
-}
-
-variable "grafana_oauth_client_id" {
-  description = "client_id of the App"
-  type        = string
-  default     = ""
-}
-
-variable "grafana_oauth_client_secret" {
-  description = "client_secret between app and authorisation server"
-  type        = string
-  default     = ""
 }
 
 ### CLUSTER Config where grafana is deployed ###

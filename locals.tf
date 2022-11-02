@@ -13,17 +13,14 @@ locals {
     prometheus_ingress_hosts       = jsonencode(var.prometheus_ingress_hosts)
     prometheus_ingress_tls         = jsonencode(var.prometheus_ingress_tls)
 
-    prometheus_operator_image_repository     = var.prometheus_operator_image_repository
-    prometheus_operator_image_tag            = var.prometheus_operator_image_tag
-    promethues_operator_nodeSelector         = var.promethues_operator_nodeSelector
-    prometheus_alertmanagerSpec_nodeSelector = var.prometheus_alertmanagerSpec_nodeSelector
-    prometheusSpec_nodeSelector              = var.prometheusSpec_nodeSelector
+    prometheus_operator_image_repository = var.prometheus_operator_image_repository
+    prometheus_operator_image_tag        = var.prometheus_operator_image_tag
+    promethues_operator_nodeselector     = var.promethues_operator_nodeselector
+    prometheus_alertmanager_nodeselector = var.prometheus_alertmanager_nodeselector
+    prometheus_nodeselector              = var.prometheus_nodeselector
   }
 
   grafana_values = {
-    ################################
-    ######## GRAFANA LOCALS ########
-    ################################
     replicas                  = var.replicas
     grafana_image_repository  = var.grafana_image_repository
     grafana_image_tag         = var.grafana_image_tag
@@ -90,10 +87,6 @@ locals {
     grafana_dashboards_config_maps = indent(2, var.grafana_dashboards_config_maps)
 
     grafana_main_config = indent(2, var.grafana_main_config)
-
-    grafana_okta_enabled        = var.grafana_okta_enabled
-    grafana_oauth_client_id     = var.grafana_oauth_client_id
-    grafana_oauth_client_secret = var.grafana_oauth_client_secret
 
     grafana_image_repository = var.grafana_image_repository
     grafana_image_tag        = var.grafana_image_tag
