@@ -3363,7 +3363,7 @@ grafana:
 
   # Extra configmaps to mount in grafana pods
   # Values are templated.
-  extraConfigmapMounts: ${grafana_extra_configmap_mounts}]
+  extraConfigmapMounts: ${grafana_extra_configmap_mounts}
     # - name: certs-configmap
     #   mountPath: /etc/grafana/ssl/
     #   subPath: certificates.crt # (optional)
