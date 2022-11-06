@@ -707,7 +707,7 @@ alertmanager:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-##
+## Do not use below section, use grafana_values instead, keeping it here to easily sync up with upstream.
 # grafana:
 #   enabled: false
 #   namespaceOverride: ""

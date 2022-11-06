@@ -152,7 +152,7 @@ variable "prometheus_nodeselector" {
 }
 
 ###########################################
-######## GRAFANA LOCALS & VARIABLE ########
+######## Grafana Chart Values ########
 ###########################################
 variable "replicas" {
   description = "Number of replicas of Grafana to run"

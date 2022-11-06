@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.6.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.5 |
 
 ## Modules
 
@@ -32,7 +32,7 @@ No modules.
 | <a name="input_chart_namespace"></a> [chart\_namespace](#input\_chart\_namespace) | Namespace to install the chart into | `string` | `"monitoring"` | no |
 | <a name="input_chart_repository"></a> [chart\_repository](#input\_chart\_repository) | Helm repository for the chart | `string` | `"https://prometheus-community.github.io/helm-charts"` | no |
 | <a name="input_chart_timeout"></a> [chart\_timeout](#input\_chart\_timeout) | Timeout to wait for the Chart to be deployed. | `number` | `300` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of Chart to install. Set to empty to install the latest version | `string` | `"39.11.0"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of Chart to install. Set to empty to install the latest version | `string` | `"41.7.1"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Cluster Name where Grafana is deployed | `string` | `""` | no |
 | <a name="input_cluster_oidc_issuer_arn"></a> [cluster\_oidc\_issuer\_arn](#input\_cluster\_oidc\_issuer\_arn) | Cluster OIDC URL | `string` | `""` | no |
 | <a name="input_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#input\_cluster\_oidc\_issuer\_url) | Cluster OIDC URL | `string` | `""` | no |
@@ -45,7 +45,6 @@ No modules.
 | <a name="input_grafana_dashboards"></a> [grafana\_dashboards](#input\_grafana\_dashboards) | YAML string to configure grafana dashboard to import | `string` | `""` | no |
 | <a name="input_grafana_dashboards_config_maps"></a> [grafana\_dashboards\_config\_maps](#input\_grafana\_dashboards\_config\_maps) | Reference to external ConfigMap per provider. Use provider name as key and ConfiMap name as value. YAML string | `string` | `""` | no |
 | <a name="input_grafana_datasources"></a> [grafana\_datasources](#input\_grafana\_datasources) | YAML string to configure grafana datasources http://docs.grafana.org/administration/provisioning/#datasources | `string` | `""` | no |
-| <a name="input_grafana_db_config"></a> [grafana\_db\_config](#input\_grafana\_db\_config) | database config for grafana | `string` | `""` | no |
 | <a name="input_grafana_enable_service_links"></a> [grafana\_enable\_service\_links](#input\_grafana\_enable\_service\_links) | Inject Kubernetes services as environment variables. | `bool` | `true` | no |
 | <a name="input_grafana_env"></a> [grafana\_env](#input\_grafana\_env) | Extra environment variables that will be pass onto deployment pods | `map(any)` | `{}` | no |
 | <a name="input_grafana_env_from_secret"></a> [grafana\_env\_from\_secret](#input\_grafana\_env\_from\_secret) | The name of a secret in the same kubernetes namespace which contain values to be added to the environment | `string` | `""` | no |
@@ -57,7 +56,7 @@ No modules.
 | <a name="input_grafana_extra_volume_mounts"></a> [grafana\_extra\_volume\_mounts](#input\_grafana\_extra\_volume\_mounts) | Additional grafana server volume mounts | `list(any)` | `[]` | no |
 | <a name="input_grafana_image_pull_policy"></a> [grafana\_image\_pull\_policy](#input\_grafana\_image\_pull\_policy) | Image Pull Policy for Grafana | `string` | `"IfNotPresent"` | no |
 | <a name="input_grafana_image_repository"></a> [grafana\_image\_repository](#input\_grafana\_image\_repository) | Grafana Image repository on Dockerhub | `string` | `"grafana/grafana"` | no |
-| <a name="input_grafana_image_tag"></a> [grafana\_image\_tag](#input\_grafana\_image\_tag) | Grafana Image tag | `string` | `"9.0.3"` | no |
+| <a name="input_grafana_image_tag"></a> [grafana\_image\_tag](#input\_grafana\_image\_tag) | Grafana Image tag | `string` | `"9.2.3"` | no |
 | <a name="input_grafana_ingress_annotations"></a> [grafana\_ingress\_annotations](#input\_grafana\_ingress\_annotations) | Annotations for ingress | `map(any)` | `{}` | no |
 | <a name="input_grafana_ingress_enabled"></a> [grafana\_ingress\_enabled](#input\_grafana\_ingress\_enabled) | Enable Ingress | `bool` | `false` | no |
 | <a name="input_grafana_ingress_hosts"></a> [grafana\_ingress\_hosts](#input\_grafana\_ingress\_hosts) | Hosts for ingress | `list(any)` | `[]` | no |
@@ -70,10 +69,6 @@ No modules.
 | <a name="input_grafana_main_config"></a> [grafana\_main\_config](#input\_grafana\_main\_config) | Main Config file in YAML | `string` | `"paths:\n  data: /var/lib/grafana/data\n  logs: /var/log/grafana\n  plugins: /var/lib/grafana/plugins\n  provisioning: /etc/grafana/provisioning\nanalytics:\n  check_for_updates: true\nlog:\n  mode: console\ngrafana_net:\n  url: https://grafana.netn"` | no |
 | <a name="input_grafana_node_selector"></a> [grafana\_node\_selector](#input\_grafana\_node\_selector) | Node selector for Pods | `map(any)` | `{}` | no |
 | <a name="input_grafana_notifiers"></a> [grafana\_notifiers](#input\_grafana\_notifiers) | YAML string to configure notifiers http://docs.grafana.org/administration/provisioning/#alert-notification-channels | `string` | `""` | no |
-| <a name="input_grafana_oauth_client_id"></a> [grafana\_oauth\_client\_id](#input\_grafana\_oauth\_client\_id) | client\_id of the App | `string` | `""` | no |
-| <a name="input_grafana_oauth_client_secret"></a> [grafana\_oauth\_client\_secret](#input\_grafana\_oauth\_client\_secret) | client\_secret between app and authorisation server | `string` | `""` | no |
-| <a name="input_grafana_okta_config"></a> [grafana\_okta\_config](#input\_grafana\_okta\_config) | okta config for grafana | `string` | `""` | no |
-| <a name="input_grafana_okta_enabled"></a> [grafana\_okta\_enabled](#input\_grafana\_okta\_enabled) | okta config to enable | `bool` | `false` | no |
 | <a name="input_grafana_pdb"></a> [grafana\_pdb](#input\_grafana\_pdb) | PodDisruptionBudget for Grafana | `map(any)` | <pre>{<br>  "minAvailable": 1<br>}</pre> | no |
 | <a name="input_grafana_persistence_annotations"></a> [grafana\_persistence\_annotations](#input\_grafana\_persistence\_annotations) | Annotations for the PV | `map(any)` | `{}` | no |
 | <a name="input_grafana_persistence_enabled"></a> [grafana\_persistence\_enabled](#input\_grafana\_persistence\_enabled) | Enable PV | `bool` | `false` | no |
@@ -112,21 +107,21 @@ No modules.
 | <a name="input_image_renderer_service_account"></a> [image\_renderer\_service\_account](#input\_image\_renderer\_service\_account) | image-renderer deployment serviceAccount | `string` | `""` | no |
 | <a name="input_image_renderer_target_port"></a> [image\_renderer\_target\_port](#input\_image\_renderer\_target\_port) | image-renderer service targetPort used by both service and deployment | `number` | `8081` | no |
 | <a name="input_max_history"></a> [max\_history](#input\_max\_history) | Max History for Helm | `number` | `20` | no |
-| <a name="input_prometheusSpec_nodeSelector"></a> [prometheusSpec\_nodeSelector](#input\_prometheusSpec\_nodeSelector) | prometheus Spec node selector | `any` | `""` | no |
-| <a name="input_prometheus_alertmanagerSpec_nodeSelector"></a> [prometheus\_alertmanagerSpec\_nodeSelector](#input\_prometheus\_alertmanagerSpec\_nodeSelector) | Alertmanager Spec node selector | `any` | `""` | no |
+| <a name="input_prometheus_alertmanager_nodeselector"></a> [prometheus\_alertmanager\_nodeselector](#input\_prometheus\_alertmanager\_nodeselector) | Alertmanager Spec node selector | `any` | `""` | no |
 | <a name="input_prometheus_host_url"></a> [prometheus\_host\_url](#input\_prometheus\_host\_url) | Prometheus Host URL | `string` | `""` | no |
 | <a name="input_prometheus_image_repository"></a> [prometheus\_image\_repository](#input\_prometheus\_image\_repository) | Prometheus Image repository | `string` | `"quay.io/prometheus/prometheus"` | no |
-| <a name="input_prometheus_image_tag"></a> [prometheus\_image\_tag](#input\_prometheus\_image\_tag) | Prometheus Image tag | `string` | `"v2.36.2"` | no |
+| <a name="input_prometheus_image_tag"></a> [prometheus\_image\_tag](#input\_prometheus\_image\_tag) | Prometheus Image tag | `string` | `"v2.39.1"` | no |
 | <a name="input_prometheus_ingress_annotations"></a> [prometheus\_ingress\_annotations](#input\_prometheus\_ingress\_annotations) | Annotations for ingress | `map(any)` | `{}` | no |
 | <a name="input_prometheus_ingress_enabled"></a> [prometheus\_ingress\_enabled](#input\_prometheus\_ingress\_enabled) | Enable Ingress | `bool` | `false` | no |
 | <a name="input_prometheus_ingress_hosts"></a> [prometheus\_ingress\_hosts](#input\_prometheus\_ingress\_hosts) | Hosts for ingress | `list(any)` | `[]` | no |
 | <a name="input_prometheus_ingress_labels"></a> [prometheus\_ingress\_labels](#input\_prometheus\_ingress\_labels) | Labels for ingress | `map(any)` | `{}` | no |
 | <a name="input_prometheus_ingress_tls"></a> [prometheus\_ingress\_tls](#input\_prometheus\_ingress\_tls) | TLS configuration for ingress | `list(any)` | `[]` | no |
+| <a name="input_prometheus_nodeselector"></a> [prometheus\_nodeselector](#input\_prometheus\_nodeselector) | prometheus Spec node selector | `any` | `""` | no |
 | <a name="input_prometheus_operator_image_repository"></a> [prometheus\_operator\_image\_repository](#input\_prometheus\_operator\_image\_repository) | Prometheus Operator Image repository | `string` | `"quay.io/prometheus-operator/prometheus-operator"` | no |
-| <a name="input_prometheus_operator_image_tag"></a> [prometheus\_operator\_image\_tag](#input\_prometheus\_operator\_image\_tag) | Prometheus Operator Image Tag | `string` | `"v0.57.0"` | no |
+| <a name="input_prometheus_operator_image_tag"></a> [prometheus\_operator\_image\_tag](#input\_prometheus\_operator\_image\_tag) | Prometheus Operator Image Tag | `string` | `"v0.60.1"` | no |
 | <a name="input_prometheus_service_account"></a> [prometheus\_service\_account](#input\_prometheus\_service\_account) | Name of the Service Account for Grafana | `string` | `""` | no |
 | <a name="input_prometheus_service_account_annotations"></a> [prometheus\_service\_account\_annotations](#input\_prometheus\_service\_account\_annotations) | Annotations for service account | `map(any)` | `{}` | no |
-| <a name="input_promethues_operator_nodeSelector"></a> [promethues\_operator\_nodeSelector](#input\_promethues\_operator\_nodeSelector) | Promethues Operator node selector | `any` | `""` | no |
+| <a name="input_promethues_operator_nodeselector"></a> [promethues\_operator\_nodeselector](#input\_promethues\_operator\_nodeselector) | Promethues Operator node selector | `any` | `""` | no |
 | <a name="input_recreate_pods"></a> [recreate\_pods](#input\_recreate\_pods) | Recreate the pods with every helm update | `bool` | `false` | no |
 | <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Helm release name | `string` | `"kube-prometheus-stack"` | no |
 | <a name="input_replicas"></a> [replicas](#input\_replicas) | Number of replicas of Grafana to run | `number` | `1` | no |
