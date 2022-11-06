@@ -18,7 +18,9 @@ locals {
     promethues_operator_nodeselector     = var.promethues_operator_nodeselector
     prometheus_alertmanager_nodeselector = var.prometheus_alertmanager_nodeselector
     prometheus_nodeselector              = var.prometheus_nodeselector
+  }
 
+  grafana_values = {
     replicas                  = var.replicas
     grafana_image_repository  = var.grafana_image_repository
     grafana_image_tag         = var.grafana_image_tag
