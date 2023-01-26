@@ -18,6 +18,8 @@ locals {
     promethues_operator_nodeselector     = var.promethues_operator_nodeselector
     prometheus_alertmanager_nodeselector = var.prometheus_alertmanager_nodeselector
     prometheus_nodeselector              = var.prometheus_nodeselector
+
+    prometheus_remote_write = jsonencode(var.prometheus_remote_write)
   }
 
   grafana_values = {

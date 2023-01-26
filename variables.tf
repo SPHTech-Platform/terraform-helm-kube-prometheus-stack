@@ -151,6 +151,12 @@ variable "prometheus_nodeselector" {
   default     = ""
 }
 
+variable "prometheus_remote_write" {
+  description = "Write samples from Prometheus to a remote endpoint"
+  type        = list(any)
+  default     = []
+}
+
 ###########################################
 ######## Grafana Chart Values ########
 ###########################################
