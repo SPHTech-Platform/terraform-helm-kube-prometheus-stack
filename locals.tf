@@ -19,7 +19,7 @@ locals {
     prometheus_alertmanager_nodeselector = var.prometheus_alertmanager_nodeselector
     prometheus_nodeselector              = var.prometheus_nodeselector
 
-    prometheus_remote_write = yamlencode(var.prometheus_remote_write)
+    prometheus_remote_write = jsonencode(var.prometheus_remote_write)
   }
 
   grafana_values = {
