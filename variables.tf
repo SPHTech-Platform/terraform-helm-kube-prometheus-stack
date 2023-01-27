@@ -153,8 +153,8 @@ variable "prometheus_nodeselector" {
 
 variable "prometheus_remote_write" {
   description = "Write samples from Prometheus to a remote endpoint"
-  type        = list(any)
-  default     = []
+  type        = any
+  default     = {}
 }
 
 ###########################################

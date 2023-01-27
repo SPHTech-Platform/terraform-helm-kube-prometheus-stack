@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.5 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.6.0 |
 
 ## Modules
 
@@ -119,6 +119,7 @@ No modules.
 | <a name="input_prometheus_nodeselector"></a> [prometheus\_nodeselector](#input\_prometheus\_nodeselector) | prometheus Spec node selector | `any` | `""` | no |
 | <a name="input_prometheus_operator_image_repository"></a> [prometheus\_operator\_image\_repository](#input\_prometheus\_operator\_image\_repository) | Prometheus Operator Image repository | `string` | `"quay.io/prometheus-operator/prometheus-operator"` | no |
 | <a name="input_prometheus_operator_image_tag"></a> [prometheus\_operator\_image\_tag](#input\_prometheus\_operator\_image\_tag) | Prometheus Operator Image Tag | `string` | `"v0.60.1"` | no |
+| <a name="input_prometheus_remote_write"></a> [prometheus\_remote\_write](#input\_prometheus\_remote\_write) | Write samples from Prometheus to a remote endpoint | `any` | <pre>{<br>  "queue_config": {<br>    "capacity": 2500,<br>    "max_samples_per_send": 1000,<br>    "max_shards": 200<br>  },<br>  "sigv4": {<br>    "region": "ap-southeast-1",<br>    "role_arn": "arn:aws:iam::XXXXXXXXX:role/tenant-XXXXXXXXXXX-customerclustertrustrole45CE3A-1PKMAVG0ZXNS3"<br>  },<br>  "url": "https://aps-workspaces.ap-southeast-1.amazonaws.com/workspaces/ws-44e4207c-a58f-db7c91e96fba/api/v1/remote_write"<br>}</pre> | no |
 | <a name="input_prometheus_service_account"></a> [prometheus\_service\_account](#input\_prometheus\_service\_account) | Name of the Service Account for Grafana | `string` | `""` | no |
 | <a name="input_prometheus_service_account_annotations"></a> [prometheus\_service\_account\_annotations](#input\_prometheus\_service\_account\_annotations) | Annotations for service account | `map(any)` | `{}` | no |
 | <a name="input_promethues_operator_nodeselector"></a> [promethues\_operator\_nodeselector](#input\_promethues\_operator\_nodeselector) | Promethues Operator node selector | `any` | `""` | no |
