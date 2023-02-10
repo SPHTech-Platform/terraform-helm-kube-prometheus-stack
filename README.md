@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.5 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.6.0 |
 
 ## Modules
 
@@ -108,6 +108,7 @@ No modules.
 | <a name="input_image_renderer_target_port"></a> [image\_renderer\_target\_port](#input\_image\_renderer\_target\_port) | image-renderer service targetPort used by both service and deployment | `number` | `8081` | no |
 | <a name="input_max_history"></a> [max\_history](#input\_max\_history) | Max History for Helm | `number` | `20` | no |
 | <a name="input_prometheus_alertmanager_nodeselector"></a> [prometheus\_alertmanager\_nodeselector](#input\_prometheus\_alertmanager\_nodeselector) | Alertmanager Spec node selector | `any` | `""` | no |
+| <a name="input_prometheus_external_labels"></a> [prometheus\_external\_labels](#input\_prometheus\_external\_labels) | External Labels for Ops Out More Information | `map(any)` | `{}` | no |
 | <a name="input_prometheus_host_url"></a> [prometheus\_host\_url](#input\_prometheus\_host\_url) | Prometheus Host URL | `string` | `""` | no |
 | <a name="input_prometheus_image_repository"></a> [prometheus\_image\_repository](#input\_prometheus\_image\_repository) | Prometheus Image repository | `string` | `"quay.io/prometheus/prometheus"` | no |
 | <a name="input_prometheus_image_tag"></a> [prometheus\_image\_tag](#input\_prometheus\_image\_tag) | Prometheus Image tag | `string` | `"v2.39.1"` | no |
@@ -116,9 +117,11 @@ No modules.
 | <a name="input_prometheus_ingress_hosts"></a> [prometheus\_ingress\_hosts](#input\_prometheus\_ingress\_hosts) | Hosts for ingress | `list(any)` | `[]` | no |
 | <a name="input_prometheus_ingress_labels"></a> [prometheus\_ingress\_labels](#input\_prometheus\_ingress\_labels) | Labels for ingress | `map(any)` | `{}` | no |
 | <a name="input_prometheus_ingress_tls"></a> [prometheus\_ingress\_tls](#input\_prometheus\_ingress\_tls) | TLS configuration for ingress | `list(any)` | `[]` | no |
+| <a name="input_prometheus_metric_labels_allowlist"></a> [prometheus\_metric\_labels\_allowlist](#input\_prometheus\_metric\_labels\_allowlist) | Comma-separated list of additional Kubernetes label keys that will be used (Example: '=namespaces=[k8s-label-1,k8s-label-n,...],pods=[app],...)' | `string` | `""` | no |
 | <a name="input_prometheus_nodeselector"></a> [prometheus\_nodeselector](#input\_prometheus\_nodeselector) | prometheus Spec node selector | `any` | `""` | no |
 | <a name="input_prometheus_operator_image_repository"></a> [prometheus\_operator\_image\_repository](#input\_prometheus\_operator\_image\_repository) | Prometheus Operator Image repository | `string` | `"quay.io/prometheus-operator/prometheus-operator"` | no |
 | <a name="input_prometheus_operator_image_tag"></a> [prometheus\_operator\_image\_tag](#input\_prometheus\_operator\_image\_tag) | Prometheus Operator Image Tag | `string` | `"v0.60.1"` | no |
+| <a name="input_prometheus_remote_write"></a> [prometheus\_remote\_write](#input\_prometheus\_remote\_write) | Write samples from Prometheus to a remote endpoint | `list(any)` | `[]` | no |
 | <a name="input_prometheus_service_account"></a> [prometheus\_service\_account](#input\_prometheus\_service\_account) | Name of the Service Account for Grafana | `string` | `""` | no |
 | <a name="input_prometheus_service_account_annotations"></a> [prometheus\_service\_account\_annotations](#input\_prometheus\_service\_account\_annotations) | Annotations for service account | `map(any)` | `{}` | no |
 | <a name="input_promethues_operator_nodeselector"></a> [promethues\_operator\_nodeselector](#input\_promethues\_operator\_nodeselector) | Promethues Operator node selector | `any` | `""` | no |

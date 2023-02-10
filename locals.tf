@@ -19,7 +19,9 @@ locals {
     prometheus_alertmanager_nodeselector = var.prometheus_alertmanager_nodeselector
     prometheus_nodeselector              = var.prometheus_nodeselector
 
-    prometheus_remote_write = jsonencode(var.prometheus_remote_write)
+    prometheus_remote_write            = jsonencode(var.prometheus_remote_write)
+    prometheus_external_labels         = jsonencode(var.prometheus_external_labels)
+    prometheus_metric_labels_allowlist = var.prometheus_metric_labels_allowlist
   }
 
   grafana_values = {

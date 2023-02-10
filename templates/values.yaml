@@ -1480,6 +1480,7 @@ kubeStateMetrics:
 ## Configuration for kube-state-metrics subchart
 ##
 kube-state-metrics:
+  metricLabelsAllowlist: ${prometheus_metric_labels_allowlist}
   namespaceOverride: ""
   rbac:
     create: true
@@ -2402,7 +2403,7 @@ prometheus:
 
     ## External labels to add to any time series or alerts when communicating with external systems
     ##
-    externalLabels: {}
+    externalLabels: ${prometheus_external_labels}
 
     ## enable --web.enable-remote-write-receiver flag on prometheus-server
     ##
