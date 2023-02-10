@@ -157,6 +157,18 @@ variable "prometheus_remote_write" {
   default     = []
 }
 
+variable "prometheus_external_labels" {
+  description = "External Labels for Ops Out More Information"
+  type        = map(any)
+  default     = {}
+}
+
+variable "prometheus_metric_labels_allowlist" {
+  description = "Comma-separated list of additional Kubernetes label keys that will be used (Example: '=namespaces=[k8s-label-1,k8s-label-n,...],pods=[app],...)'"
+  type        = string
+  default     = ""
+}
+
 ###########################################
 ######## Grafana Chart Values ########
 ###########################################
